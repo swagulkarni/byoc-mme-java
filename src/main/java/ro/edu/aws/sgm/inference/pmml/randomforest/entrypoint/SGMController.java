@@ -165,12 +165,12 @@ public class SGMController {
     long freeMemory = Runtime.getRuntime().freeMemory();
     long maxMemory =  Runtime.getRuntime().maxMemory();
 
-    System.out.println("Current runtime free memoery: "+ freeMemory);
+    System.out.println("Current runtime free memory: "+ freeMemory);
     System.out.println("Max memory available: "+maxMemory);
 
     double availableMemory = ((double)freeMemory/maxMemory) * 100;
 
-    System.out.println("Current heap memory usage: "+ availableMemory+"%");
+    System.out.println("Current heap memory available: "+ availableMemory+"%");
     System.out.println("Memory threshold value: "+memoryThresholdValue+"%");
 
       if( availableMemory >= Integer.parseInt(memoryThresholdValue))
