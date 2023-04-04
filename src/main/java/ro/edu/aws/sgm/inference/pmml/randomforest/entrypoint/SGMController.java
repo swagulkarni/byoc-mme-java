@@ -30,6 +30,7 @@ import ro.edu.aws.sgm.inference.pmml.randomforest.exception.ModelNotFoundExcepti
 import ro.edu.aws.sgm.inference.pmml.randomforest.handler.InferenceHandlerInf;
 import ro.edu.aws.sgm.inference.pmml.randomforest.pojo.Features;
 import ro.edu.aws.sgm.inference.pmml.randomforest.pojo.InputData;
+import ro.edu.aws.sgm.inference.pmml.randomforest.pojo.MemoryStats;
 import ro.edu.aws.sgm.inference.pmml.randomforest.pojo.Model;
 
 @RestController
@@ -150,7 +151,14 @@ public class SGMController {
     return new ResponseEntity<String>("Model: " + model_name + " removed from the memory.", HttpStatus.OK);
   }
 
-
+  @GetMapping("memory-status")
+  public MemoryStats getMemoryStatistics() {
+      MemoryStats stats = new MemoryStats();
+      stats.setHeapSize(Runtime.getRuntime().totalMemory());
+      stats.setHeapMaxSize(Runtime.getRuntime().maxMemory());
+      stats.setHeapFreeSize(Runtime.getRuntime().freeMemory());
+      return stats;
+  }
 
   private boolean isModelLoaded(String model_name){
 
